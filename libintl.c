@@ -29,6 +29,9 @@ typedef void* HMODULE;
 
 #ifdef _MSC_VER
 #  define strdup(s) _strdup (s)
+#  define G_INTL_EXPORT __declspec(dllexport)
+#else
+#  define G_INTL_EXPORT
 #endif
 
 #include <stdlib.h>
@@ -240,6 +243,7 @@ _proxy_libintl_deinit (void)
 }
 
 #define IMPLEMENT(fn, parlist, parlist2)	\
+G_INTL_EXPORT                                   \
 char *						\
 g_libintl_ ## fn parlist			\
 {						\
