@@ -7,8 +7,10 @@ project('proxy-libintl', 'c',
 
 install_headers('libintl.h')
 
-libintl = library('intl',
+intl_lib = library('intl',
   'libintl.c',
   c_args: ['-DSTUB_ONLY'],
-  install : true,
-)
+  install : true)
+
+intl_dep = declare_dependency(link_with : intl_lib,
+  include_directories : include_directories('.'))
